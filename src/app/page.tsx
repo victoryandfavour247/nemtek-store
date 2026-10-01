@@ -36,18 +36,18 @@ export default function Home() {
         </aside>
 
         {/* hero banner */}
-        <Link href="/shop?category=gate-motors" className="relative flex min-h-[260px] flex-col justify-center overflow-hidden rounded-[var(--radius)] p-8 text-white" style={{ background: "linear-gradient(115deg,#1f2937,#374151)" }}>
-          <div className="absolute inset-0 opacity-20">
+        <Link href="/shop?category=gate-motors" className="relative flex min-h-[260px] flex-col justify-center overflow-hidden rounded-[var(--radius)] p-8 text-white" style={{ background: "linear-gradient(115deg,#0b2a6b,#1e52e6)" }}>
+          <div className="absolute inset-0 opacity-25">
             <svg className="h-full w-full" preserveAspectRatio="none">
-              <defs><pattern id="m" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect x="0" y="8" width="14" height="4" rx="2" fill="#f68b1e"/></pattern></defs>
+              <defs><pattern id="m" width="24" height="24" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect x="0" y="8" width="14" height="4" rx="2" fill="#9fc0ff"/></pattern></defs>
               <rect width="100%" height="100%" fill="url(#m)"/>
             </svg>
           </div>
           <div className="relative max-w-md">
-            <span className="rounded-full px-3 py-1 text-xs font-bold" style={{ background: "var(--orange)" }}>MEGA STOCK DEALS</span>
+            <span className="rounded-full bg-white px-3 py-1 text-xs font-bold" style={{ color: "var(--navy)" }}>MEGA STOCK DEALS</span>
             <h1 className="mt-3 text-3xl font-black leading-tight sm:text-4xl">Secure your perimeter.<br/>Automate your gate.</h1>
             <p className="mt-2 text-sm text-white/80">Genuine NEMTEK fencing &amp; CENTURION motors — up to 30% off.</p>
-            <span className="btn btn-primary mt-5 inline-flex">Shop deals now</span>
+            <span className="btn mt-5 inline-flex bg-white font-bold" style={{ color: "var(--navy)" }}>Shop deals now</span>
           </div>
           <div className="absolute right-6 top-1/2 hidden h-40 w-40 -translate-y-1/2 overflow-hidden rounded-xl bg-white sm:block">
             <ProductImage product={PRODUCTS.find((p) => p.id === "ct-d5evo")!} className="h-full w-full" />

@@ -14,13 +14,13 @@
   --text-soft: #4e5560;
   --text-faint: #8b919b;
 
-  /* Brand — Jumia-like orange + strong dark */
-  --orange: #f68b1e;
-  --orange-600: #e67a0e;
-  --orange-50: #fef3e6;
-  --blue: #f68b1e;          /* primary = orange (kept name for components) */
-  --blue-600: #e67a0e;
-  --navy: #1f2937;          /* strong dark for prices/headings */
+  /* Brand — NEMTEK blue (matches the logo) */
+  --orange: #1e52e6;        /* primary = NEMTEK electric blue (name kept for components) */
+  --orange-600: #1a46c4;
+  --orange-50: #e9f0fe;
+  --blue: #1e52e6;
+  --blue-600: #1a46c4;
+  --navy: #0b2a6b;          /* deep navy for prices / strong accents */
   --cyan: #178a50;          /* "official store" green */
   --volt: #ffd24a;
   --red: #e4002b;           /* discount / sale red */

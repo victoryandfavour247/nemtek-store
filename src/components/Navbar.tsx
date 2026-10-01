@@ -7,29 +7,16 @@ import { useStore } from "@/store/StoreProvider";
 import { categoryList } from "@/lib/products";
 import Logo from "./Logo";
 
-function useTheme() {
-  const [dark, setDark] = useState(false);
-  useEffect(() => {
-    const saved = localStorage.getItem("nemtek.theme");
-    const isDark = saved === "dark";
-    setDark(isDark);
-    document.documentElement.classList.toggle("dark", isDark);
-  }, []);
-  const toggle = () =>
-    setDark((d) => {
-      const next = !d;
-      document.documentElement.classList.toggle("dark", next);
-      localStorage.setItem("nemtek.theme", next ? "dark" : "light");
-      return next;
-    });
-  return { dark, toggle };
-}
-
 export default function Navbar() {
   const { cartCount, wishlist, user, setCartOpen } = useStore();
-  const { dark, toggle } = useTheme();
   const router = useRouter();
   const [q, setQ] = useState("");
+
+  // Store is light-only — clear any stale dark preference from earlier sessions.
+  useEffect(() => {
+    document.documentElement.classList.remove("dark");
+    try { localStorage.setItem("nemtek.theme", "light"); } catch {}
+  }, []);
 
   const submitSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,7 +30,7 @@ export default function Navbar() {
         <div className="container-x flex h-8 items-center justify-between text-[11.5px] font-medium">
           <span className="flex items-center gap-1.5">⚡ Genuine NEMTEK &amp; CENTURION — available in stock</span>
           <span className="hidden items-center gap-4 sm:flex">
-            <button onClick={toggle} className="hover:underline">{dark ? "☀ Light mode" : "🌙 Dark mode"}</button>
+            <span>🚚 Nationwide delivery</span>
             <span>📞 +233 00 000 0000</span>
           </span>
         </div>
