@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
+/* ===================================================================
+   NEMTEK STORE — Jumia-style marketplace design system
+   =================================================================== */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #ededed;
+  --bg-elev: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f6f7f9;
+  --border: #e4e6ea;
+  --text: #282828;
+  --text-soft: #4e5560;
+  --text-faint: #8b919b;
+
+  /* Brand — Jumia-like orange + strong dark */
+  --orange: #f68b1e;
+  --orange-600: #e67a0e;
+  --orange-50: #fef3e6;
+  --blue: #f68b1e;          /* primary = orange (kept name for components) */
+  --blue-600: #e67a0e;
+  --navy: #1f2937;          /* strong dark for prices/headings */
+  --cyan: #178a50;          /* "official store" green */
+  --volt: #ffd24a;
+  --red: #e4002b;           /* discount / sale red */
+  --amber: #f6a609;
+  --green: #178a50;
+
+  --shadow-sm: 0 1px 2px rgba(20, 23, 28, 0.06);
+  --shadow-md: 0 4px 14px rgba(20, 23, 28, 0.10);
+  --shadow-lg: 0 16px 40px rgba(20, 23, 28, 0.16);
+  --radius: 10px;
+}
+
+:root.dark {
+  --bg: #0b0f17;
+  --bg-elev: #121826;
+  --surface: #151c2c;
+  --surface-2: #1b2335;
+  --border: #26324a;
+  --text: #eaf0ff;
+  --text-soft: #aeb8cc;
+  --text-faint: #717d96;
+  --navy: #e8edf7;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 8px 20px rgba(0,0,0,0.45);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.6);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text: var(--text);
+  --color-orange: var(--orange);
+  --color-blue: var(--blue);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* { border-color: var(--border); }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+::selection { background: var(--orange); color: #fff; }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 20px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-faint); }
+
+/* --------------------------- utilities --------------------------- */
+.container-x { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: 14px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  font-weight: 700; font-size: 14px; line-height: 1;
+  padding: 11px 18px; border-radius: 6px; cursor: pointer;
+  transition: filter .15s ease, background .2s ease, opacity .2s, transform .1s;
+  white-space: nowrap; border: 1px solid transparent; text-transform: none;
 }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+.btn-primary { color: #fff; background: var(--orange); }
+.btn-primary:hover { background: var(--orange-600); }
+
+.btn-dark { color: #fff; background: var(--navy); }
+.btn-dark:hover { filter: brightness(1.12); }
+
+.btn-ghost { background: var(--surface-2); color: var(--text); border-color: var(--border); }
+.btn-ghost:hover { background: var(--border); }
+
+.btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+/* keep old name used in a few places */
+.btn-volt { color: var(--navy); background: var(--volt); }
+.btn-volt:hover { filter: brightness(1.03); }
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 600;
+  background: var(--surface-2); color: var(--text-soft); border: 1px solid var(--border);
+  cursor: pointer; transition: all .15s ease; white-space: nowrap;
+}
+.chip:hover { border-color: var(--orange); color: var(--orange); }
+.chip-active { background: var(--orange); color: #fff; border-color: var(--orange); }
+
+/* discount pill (top-left on card) */
+.disc-badge {
+  position: absolute; top: 8px; left: 8px; z-index: 2;
+  font-size: 11px; font-weight: 800; padding: 3px 7px; border-radius: 4px;
+  color: var(--red); background: #ffe8ec;
+}
+.badge {
+  position: absolute; top: 8px; left: 8px; z-index: 2;
+  font-size: 10px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase;
+  padding: 4px 8px; border-radius: 4px; color: #fff; background: var(--orange);
+}
+
+.input {
+  width: 100%; padding: 11px 13px; border-radius: 6px;
+  background: var(--surface); border: 1px solid var(--border); color: var(--text);
+  font-size: 15px; transition: border .15s, box-shadow .15s; outline: none;
+}
+.input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(246,139,30,.18); }
+.input::placeholder { color: var(--text-faint); }
+.label { font-size: 13px; font-weight: 600; color: var(--text-soft); margin-bottom: 6px; display: block; }
+
+/* section header with orange accent bar */
+.section {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+}
+.section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; border-bottom: 1px solid var(--border);
+}
+.section-head h2 { font-size: 17px; font-weight: 800; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.reveal { animation: fadeUp .5s ease both; }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.15);} 100% { transform: scale(1); opacity: 1; } }
+.pop { animation: pop .3s ease both; }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: none; } }
+
+.line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
