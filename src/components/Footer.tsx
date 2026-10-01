@@ -51,7 +51,7 @@ export default function Footer() {
       </div>
       <div className="border-t py-5" style={{ borderColor: "var(--border)" }}>
         <div className="container-x flex flex-col items-center justify-between gap-2 text-xs sm:flex-row" style={{ color: "var(--text-faint)" }}>
-          <span>© {new Date().getFullYear()} NEMTEK Store Ghana. Demo storefront.</span>
+          <span>© {new Date().getFullYear()} NEMTEK Store Ghana. </span>
           <span className="flex gap-4">
             <Link href="/shop">Privacy</Link><Link href="/shop">Terms</Link><Link href="/shop">Returns</Link>
           </span>
